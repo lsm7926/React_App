@@ -1,5 +1,5 @@
 require("dotenv").config();
-import{GraphQLServer} from "graphql-yoga";
+import{ GraphQLServer } from "graphql-yoga";
 
 const PORT = process.env.PORT || 4000;
 
