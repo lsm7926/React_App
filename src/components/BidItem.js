@@ -25,11 +25,13 @@ const BidItemBlock = styled.div`
 const BidItem = ({Bid}) => {
     const {bidNtceNo, bidNtceNm} = Bid;
     return (
+        <div>
         <BidItemBlock>
             <div className = "contents">
-                {bidNtceNm}[{bidNtceNo}]
+                {bidNtceNm} [{bidNtceNo}]
             </div>
         </BidItemBlock>
+        </div>
     );
 };
 
