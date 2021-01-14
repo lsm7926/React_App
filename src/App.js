@@ -1,10 +1,11 @@
 import React from 'react';
-import BidList from './components/BidList';
+import BidSearchPage from './components/BidSearchPage';
+import './App.css'
 
 const App = () => {
   return(
     <div className="App">
-      <BidList/>
+      <BidSearchPage/>
     </div>
   )
 };

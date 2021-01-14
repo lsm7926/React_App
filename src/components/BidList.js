@@ -16,6 +16,11 @@ const BidListBlock = styled.div`
         padding-right: 1rem;
     }
 `;
+const TableBlock = styled.table`
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+`;
 
 const BidList = () => {
     const [Bids,setBids] = useState(null);
@@ -26,7 +31,7 @@ const BidList = () => {
             setLoading(true);
             try {
                 const response = await axios.get(
-                    '1230000/BidPublicInfoService/getBidPblancListInfoCnstwk?inqryDiv=1&type=json&inqryBgnDt=202012010000&inqryEndDt=202101012359&pageNo=1&numOfRows=30&ServiceKey=55qUjIXFw%2BGrGdG44Ro8Hrmi4SHf5qpKJpWxtv47WZTXp8hDofXWHHctm8rE1ZUHGNFdY%2FemguVdw3h3PM5Zdg%3D%3D',
+                    '1230000/BidPublicInfoService/getBidPblancListInfoCnstwk?inqryDiv=1&type=json&inqryBgnDt=202101130000&inqryEndDt=202101142359&pageNo=1&numOfRows=30&ServiceKey=55qUjIXFw%2BGrGdG44Ro8Hrmi4SHf5qpKJpWxtv47WZTXp8hDofXWHHctm8rE1ZUHGNFdY%2FemguVdw3h3PM5Zdg%3D%3D',
                 );
                 setBids(response.data.response.body.items);
             }
@@ -52,10 +57,16 @@ const BidList = () => {
     return (
         <div>
             <div>
-                <h1>공고조회</h1>
-            </div>
-            <div className = "App">
-                    <BidListBlock>{bidRow}</BidListBlock>
+                    <TableBlock>
+                        <thead>
+                            <tr>
+                                <td style={{"borderWidth":"1px", 'borderColor':"white", 'borderStyle':'solid', 'backgroundColor':"gray"}}>공고번호</td>
+                                <td style={{"borderWidth":"1px", 'borderColor':"white", 'borderStyle':'solid', 'backgroundColor':"gray"}}>공고명</td>
+                                <td style={{"borderWidth":"1px", 'borderColor':"white", 'borderStyle':'solid', 'backgroundColor':"gray"}}>공고현장 지역명</td>
+                            </tr>
+                        </thead>
+                        <tbody>{bidRow}</tbody>
+                    </TableBlock>
             </div>
         </div>
 
