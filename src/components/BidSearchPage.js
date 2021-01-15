@@ -12,16 +12,16 @@ const BidSearchPage = (props) => {
     return await fetch('https://restcountries.eu/rest/v2/all')
       .then(response => response.json())
       .then(data => {
-         setCountryList(data) 
-         setCountryListDefault(data)
+         setBidList(data) 
+         setBidListDefault(data)
        });}
 
   const updateInput = async (input) => {
-     const filtered = countryListDefault.filter(country => {
-      return country.name.toLowerCase().includes(input.toLowerCase())
+     const filtered = bidListDefault.filter(bid => {
+      return bid.name.toLowerCase().includes(input.toLowerCase())
      })
      setInput(input);
-     setCountryList(filtered);
+     setBidList(filtered);
   }
 */
   //useEffect( () => {fetchData()},[]);
@@ -29,7 +29,7 @@ const BidSearchPage = (props) => {
   return (
     <>
         <div>   
-            <h1>공고조회</h1>
+            <h1>입찰공고 목록</h1>
         </div>
         <SearchBar 
             input={input} 

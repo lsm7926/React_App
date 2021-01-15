@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import BidItem from './BidItem';
-import ReactPaginate from "react-paginate";
 
 const BidListBlock = styled.div`
     box-sizing: border-box;
@@ -30,9 +29,12 @@ const BidList = () => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const response = await axios.get(
-                    '1230000/BidPublicInfoService/getBidPblancListInfoCnstwk?inqryDiv=1&type=json&inqryBgnDt=202101130000&inqryEndDt=202101142359&pageNo=1&numOfRows=30&ServiceKey=55qUjIXFw%2BGrGdG44Ro8Hrmi4SHf5qpKJpWxtv47WZTXp8hDofXWHHctm8rE1ZUHGNFdY%2FemguVdw3h3PM5Zdg%3D%3D',
-                );
+                let inqryDiv = "1";
+                let pageNo = "1"; 
+                const apikey = "55qUjIXFw%2BGrGdG44Ro8Hrmi4SHf5qpKJpWxtv47WZTXp8hDofXWHHctm8rE1ZUHGNFdY%2FemguVdw3h3PM5Zdg%3D%3D";
+                let url = "1230000/BidPublicInfoService/getBidPblancListInfoCnstwk?inqryDiv="+inqryDiv+"&type=json&inqryBgnDt=202101130000&inqryEndDt=202101142359&pageNo="+pageNo+"&numOfRows=30&ServiceKey="+apikey;
+                //let url = '1230000/BidPublicInfoService/getBidPblancListInfoCnstwk?inqryDiv=1&type=json&inqryBgnDt=202101130000&inqryEndDt=202101142359&pageNo=1&numOfRows=30&ServiceKey=55qUjIXFw%2BGrGdG44Ro8Hrmi4SHf5qpKJpWxtv47WZTXp8hDofXWHHctm8rE1ZUHGNFdY%2FemguVdw3h3PM5Zdg%3D%3D';
+                const response = await axios.get(url);
                 setBids(response.data.response.body.items);
             }
             catch(e){
@@ -57,16 +59,16 @@ const BidList = () => {
     return (
         <div>
             <div>
-                    <TableBlock>
-                        <thead>
-                            <tr>
-                                <td style={{"borderWidth":"1px", 'borderColor':"white", 'borderStyle':'solid', 'backgroundColor':"gray"}}>공고번호</td>
-                                <td style={{"borderWidth":"1px", 'borderColor':"white", 'borderStyle':'solid', 'backgroundColor':"gray"}}>공고명</td>
-                                <td style={{"borderWidth":"1px", 'borderColor':"white", 'borderStyle':'solid', 'backgroundColor':"gray"}}>공고현장 지역명</td>
-                            </tr>
-                        </thead>
-                        <tbody>{bidRow}</tbody>
-                    </TableBlock>
+                <TableBlock>
+                    <thead>
+                        <tr>
+                            <td style={{"borderWidth":"1px", 'borderColor':"white", 'borderStyle':'solid', 'backgroundColor':"gray", 'textAlign':'center'}}>공고번호</td>
+                            <td style={{"borderWidth":"1px", 'borderColor':"white", 'borderStyle':'solid', 'backgroundColor':"gray", 'textAlign':'center'}}>공고명</td>
+                            <td style={{"borderWidth":"1px", 'borderColor':"white", 'borderStyle':'solid', 'backgroundColor':"gray", 'textAlign':'center'}}>공고현장 지역명</td>
+                        </tr>
+                    </thead>
+                    <tbody>{bidRow}</tbody>
+                </TableBlock>
             </div>
         </div>
 
